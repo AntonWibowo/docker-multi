@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t antonwibowo/complex-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run antonwibowo/complex-test npm test -- --coverage
+
+after_success:
+  - docker build -t antonwibowo/tut-multi-client ./client
+  - docker build -t antonwibowo/tut-multi-nginx ./nginx
+  - docker build -t antonwibowo/tut-multi-server ./server
+  - docker build -t antonwibowo/tut-multi-worker ./worker
+
+# push to Dockerhub

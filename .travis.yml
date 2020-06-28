@@ -14,5 +14,10 @@ after_success:
   - docker build -t antonwibowo/tut-multi-nginx ./nginx
   - docker build -t antonwibowo/tut-multi-server ./server
   - docker build -t antonwibowo/tut-multi-worker ./worker
-
-# push to Dockerhub
+  # Log in to CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push to Dockerhub
+  - docker push antonwibowo/tut-multi-client
+  - docker push antonwibowo/tut-multi-nginx
+  - docker push antonwibowo/tut-multi-server
+  - docker push antonwibowo/tut-multi-worker

@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "antonwibowo/tut-multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "express",
+            "image": "antonwibowo/tut-multi-server",
+            "hostname": "express",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "antonwibowo/tut-multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "antonwibowo/tut-multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "client",
+                "server"
+            ]
+        }
+    ]
+}

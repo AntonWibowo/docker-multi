@@ -35,7 +35,7 @@
             ],
             "links": [
                 "client",
-                "server"
+                "express"
             ],
             "memory": 128
         }
